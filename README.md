@@ -6,10 +6,15 @@
     <img alt="GitHub" src="https://img.shields.io/github/license/HongxinXiang/ImageMol?style=flat-square">
 </a>
 
-**Discovery of EP4 antagonists with image-guided explainable deep learning workflow**
+**🚀 Discovery of EP4 antagonists with image-guided explainable deep learning workflow**
+
+**🚀 Paper link:** XXXXXX
+
+
 <div align="center">
   <img src="imgs/main.png" width="600"/>
 </div>
+
 
 
 
