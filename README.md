@@ -16,6 +16,27 @@
 </div>
 
 
+## 🪄 Adapt to Your Own Task
+There are many possible areas that can use LeadDisFlow to assist the discovery processes: 
+
+<div align="center">
+<table style="margin-left: auto; margin-right: auto;">
+  <tr>
+    <td style="padding: 5px; text-align: center;">
+      <img src="imgs/fragments.jpg" alt="Description of Image 3" style="width: 200px; height: 200px; object-fit: cover;">
+      <div style="text-align: center">Fragment-based molecular generation</div>
+    </td>
+    <td style="padding: 5px; text-align: center;">
+      <img src="imgs/screen.png" alt="Description of Image 1" style="width: 200px; height: 200px; object-fit: cover;">
+      <p>Screening of target compound library</p>
+    </td>
+    <td style="padding: 5px; text-align: center;">
+      <img src="imgs/G_S.png" alt="Description of Image 2" style="width: 200px; height: 200px; object-fit: cover;">
+      <p>Molecules generatio +screen of target</p>
+    </td>
+  </tr>
+</table>
+</div>
 
 
 
@@ -134,8 +155,12 @@ python models/ImageMol/evaluate_predict.py \
 
 
 
-## Acknowledgments
+## 📚Acknowledgments
 
 ---
 * Zeng X, Xiang H, Yu L, et al. Accurate prediction of molecular properties and drug targets using a self-supervised image representation learning framework[J]. Nature Machine Intelligence, 2022, 4(11): 1004-1016.
 * Arús-Pous, J. et al. SMILES-based deep generative scaffold decorator for de-novo drug design. J. Cheminformatics 12, 38 (2020).
+
+## 📚Reference
+* https://www.targetmol.cn/service/virtual-screening
+* https://rdkit.blogspot.com/2020/01/similarity-maps-with-new-drawing-code.html
