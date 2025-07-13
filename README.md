@@ -22,21 +22,22 @@ There are many possible areas that can use LeadDisFlow to assist the discovery p
 <div align="center">
 <table style="margin-left: auto; margin-right: auto;">
   <tr>
-    <td style="padding: 5px; text-align: center;">
+    <td style="padding: 5px; text-align: center; vertical-align: top;">
       <img src="imgs/fragments.jpg" alt="Description of Image 3" style="width: 200px; height: 200px; object-fit: cover;">
       <div style="text-align: center">Fragment-based molecular generation</div>
     </td>
-    <td style="padding: 5px; text-align: center;">
+    <td style="padding: 5px; text-align: center; vertical-align: top;">
       <img src="imgs/screen.png" alt="Description of Image 1" style="width: 200px; height: 200px; object-fit: cover;">
       <p>Screening of target compound library</p>
     </td>
-    <td style="padding: 5px; text-align: center;">
+    <td style="padding: 5px; text-align: center; vertical-align: top;">
       <img src="imgs/G_S.png" alt="Description of Image 2" style="width: 200px; height: 200px; object-fit: cover;">
       <p>Molecules generatio +screen of target</p>
     </td>
   </tr>
 </table>
 </div>
+
 
 
 
