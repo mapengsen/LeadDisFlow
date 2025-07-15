@@ -8,7 +8,7 @@
 
 **🚀 Discovery of EP4 antagonists with image-guided explainable deep learning workflow**
 
-**🚀 Paper link:** XXXXXX
+**🚀 Paper link:** https://doi.org/10.1360/nso/20240015
 
 
 <div align="center">
