@@ -117,7 +117,7 @@ def main():
     slice_db_action = SliceDB(args.input_smiles_path, args.output_parquet_folder, enumerator, args.max_cuts, args.num_partitions, LOG)
     slice_df = slice_db_action.run()
 
-    # 得到output_smiles_path'/'之前的路径
+    # Get the path before '/' in output_smiles_path
     os.system('mkdir -p {}'.format(os.path.dirname(args.output_smiles_path)))
     os.system('mkdir -p {}'.format(os.path.dirname(args.output_smiles_path) + '/models'))
 

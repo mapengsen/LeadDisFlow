@@ -1,6 +1,6 @@
 import argparse
 import os
-import shutil  # 添加shutil模块用于文件复制
+import shutil  # Add shutil module for file copying
 import numpy as np
 import pandas as pd
 from rdkit import Chem
@@ -24,9 +24,9 @@ def loadSmilesAndSave(smis, path):
         ==============================================================================================================
 
     '''
-    mol = Chem.MolFromSmiles(smis)  # 从SMILES字符串创建分子对象
-    img = Draw.MolsToGridImage([mol], molsPerRow=1, subImgSize=(224, 224))  # 将分子转换为图像
-    img.save(path)  # 保存图像到指定路径
+    mol = Chem.MolFromSmiles(smis)  # Create molecule object from SMILES string
+    img = Draw.MolsToGridImage([mol], molsPerRow=1, subImgSize=(224, 224))  # Convert molecule to image
+    img.save(path)  # Save image to specified path
 
 
 def main():
@@ -39,28 +39,28 @@ def main():
         ...
     :return:
     '''
-    parser = argparse.ArgumentParser(description='Pretraining Data Generation for ImageMol')  # 创建参数解析器
-    parser.add_argument('--dataroot', type=str, default="./datasets/pretraining/", help='data root')  # 数据根目录参数
-    parser.add_argument('--dataset', type=str, default="data", help='dataset name, e.g. data')  # 数据集名称参数
-    args = parser.parse_args()  # 解析命令行参数
+    parser = argparse.ArgumentParser(description='Pretraining Data Generation for ImageMol')  # Create argument parser
+    parser.add_argument('--dataroot', type=str, default="./datasets/pretraining/", help='data root')  # Data root directory parameter
+    parser.add_argument('--dataset', type=str, default="data", help='dataset name, e.g. data')  # Dataset name parameter
+    args = parser.parse_args()  # Parse command line arguments
 
-    raw_file_path = os.path.join(args.dataroot, args.dataset, "{}.csv".format(args.dataset))  # 原始CSV文件路径
-    img_save_root = os.path.join(args.dataroot, args.dataset, "processed/224")  # 图像保存根目录
-    csv_save_path = os.path.join(args.dataroot, args.dataset, "{}_for_pretrain.csv".format(args.dataset))  # 处理后CSV保存路径
-    error_save_path = os.path.join(args.dataroot, args.dataset, "error_smiles.csv")  # 错误SMILES保存路径
+    raw_file_path = os.path.join(args.dataroot, args.dataset, "{}.csv".format(args.dataset))  # Original CSV file path
+    img_save_root = os.path.join(args.dataroot, args.dataset, "processed/224")  # Image save root directory
+    csv_save_path = os.path.join(args.dataroot, args.dataset, "{}_for_pretrain.csv".format(args.dataset))  # Processed CSV save path
+    error_save_path = os.path.join(args.dataroot, args.dataset, "error_smiles.csv")  # Error SMILES save path
 
-    # 创建processed目录（如果不存在）
+    # Create processed directory if it doesn't exist
     processed_dir = os.path.join(args.dataroot, args.dataset, "processed")
     if not os.path.exists(processed_dir):
         os.makedirs(processed_dir)
-    
-    # 将原始CSV文件复制到processed目录并重命名为BACE1_processed_ac.csv
+
+    # Copy original CSV file to processed directory and rename to BACE1_processed_ac.csv
     processed_csv_path = os.path.join(processed_dir, "{}_processed_ac.csv".format(args.dataset))
     if os.path.exists(raw_file_path) and not os.path.exists(processed_csv_path):
         shutil.copy2(raw_file_path, processed_csv_path)
-        print(f"已将 {raw_file_path} 复制到 {processed_csv_path}")
+        print(f"Copied {raw_file_path} to {processed_csv_path}")
 
-    if not os.path.exists(img_save_root):  # 如果图像保存目录不存在则创建
+    if not os.path.exists(img_save_root):  # Create image save directory if it doesn't exist
         os.makedirs(img_save_root)
 
     df = pd.read_csv(raw_file_path)  # 读取原始CSV文件

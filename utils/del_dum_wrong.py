@@ -4,8 +4,8 @@ import os
 import argparse
 from rdkit import Chem
 from rdkit.Chem.Scaffolds import MurckoScaffold
-from tqdm import tqdm  # 导入进度条库
-from multiprocessing import Pool, cpu_count  # 导入多进程支持
+from tqdm import tqdm  # Import progress bar library
+from multiprocessing import Pool, cpu_count  # Import multiprocessing support
 
 
 def generate_scaffold(smiles):
@@ -16,7 +16,7 @@ def generate_scaffold(smiles):
 
 
 def process_single_molecule(row_data):
-    """处理单个分子数据 - 用于多进程"""
+    """Process single molecule data - for multiprocessing"""
     row, smiles_index = row_data
     smiles = row[smiles_index]
     mol = Chem.MolFromSmiles(smiles)
@@ -24,7 +24,7 @@ def process_single_molecule(row_data):
         return None
     canonical_smiles = Chem.MolToSmiles(mol, isomericSmiles=True)
     scaffold = generate_scaffold(canonical_smiles)
-    # 返回处理后的行数据
+    # Return processed row data
     new_row = row.copy()
     new_row.insert(-1, canonical_smiles)
     new_row.append(scaffold)
@@ -44,57 +44,57 @@ def count_csv_len(fileName):
 def process_molecules(input_file, output_file, temp_file='temporary.csv', n_processes=None):
     """Process molecular data: add canonical SMILES and scaffold using multiprocessing"""
 
-    # 设置进程数，默认为CPU核心数
+    # Set number of processes, default to CPU core count
     if n_processes is None:
         n_processes = cpu_count()
-    print(f"使用 {n_processes} 个进程进行并行处理")
+    print(f"Using {n_processes} processes for parallel processing")
 
-    # 首先计算总行数用于进度条
-    print("正在计算文件行数...")
-    total_rows = count_csv_len(input_file) - 1  # 减去标题行
-    print(f"总共需要处理 {total_rows} 行数据")
+    # First calculate total rows for progress bar
+    print("Calculating file row count...")
+    total_rows = count_csv_len(input_file) - 1  # Subtract header row
+    print(f"Total {total_rows} rows of data to process")
 
     # Step 1: Add canonical SMILES and scaffold using multiprocessing
-    print("步骤1: 使用多进程添加规范SMILES和分子骨架...")
-    
-    # 读取所有数据
+    print("Step 1: Adding canonical SMILES and molecular scaffolds using multiprocessing...")
+
+    # Read all data
     with open(input_file, 'r', encoding="utf-8") as input_csv:
         reader = csv.reader(input_csv)
-        header = next(reader)  # 读取标题行
+        header = next(reader)  # Read header row
         header.insert(-1, "canonical_smiles")
         header.append("generator_SMILES_scaffold")
-        
-        # 读取所有行数据
+
+        # Read all row data
         all_rows = list(reader)
     
-    # 准备多进程数据
-    smiles_index = 1  # SMILES列索引
+    # Prepare multiprocessing data
+    smiles_index = 1  # SMILES column index
     process_data = [(row, smiles_index) for row in all_rows]
-    
-    # 使用多进程处理
+
+    # Use multiprocessing
     processed_rows = []
     with Pool(processes=n_processes) as pool:
-        # 使用tqdm显示进度
+        # Use tqdm to show progress
         results = list(tqdm(
             pool.imap(process_single_molecule, process_data),
             total=len(process_data),
-            desc="并行处理分子数据",
-            unit="行"
+            desc="Parallel processing molecular data",
+            unit="row"
         ))
-        
-        # 收集有效结果
+
+        # Collect valid results
         for result in results:
             if result is not None:
                 processed_rows.append(result)
     
-    # 写入临时文件
+    # Write to temporary file
     with open(temp_file, 'w', newline='', encoding="utf-8") as output_csv:
         writer = csv.writer(output_csv)
         writer.writerow(header)
         writer.writerows(processed_rows)
 
     # Step 2: Filter and remove duplicates
-    print("步骤2: 过滤和去重...")
+    print("Step 2: Filtering and deduplication...")
     df = pd.read_csv(temp_file)
     # Delete molecules containing *
     df = df[~df['canonical_smiles'].str.contains('\*')]

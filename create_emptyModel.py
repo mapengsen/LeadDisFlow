@@ -23,7 +23,7 @@ def parse_args():
                         The SMILES are taken as-is, no processing is done."),
                         type=str, required=True)
     parser.add_argument("--output-model-path", "-o", help="Prefix to the output model.", type=str, required=True)
-    parser.add_argument("--num-layers", "-l", help="Number of RNN layers of the model [DEFAULT: 3], 也就是每个RNN中包含多少个LSTM/GRU", type=int, default=3)
+    parser.add_argument("--num-layers", "-l", help="Number of RNN layers of the model [DEFAULT: 3], i.e., how many LSTM/GRU units each RNN contains", type=int, default=3)
     parser.add_argument("--layer-size", "-s", help="Size of each of the RNN layers [DEFAULT: 512]", type=int, default=512)
     parser.add_argument("--embedding-layer-size", "-e",
                         help="Size of the embedding layer [DEFAULT: 256]", type=int, default=256)

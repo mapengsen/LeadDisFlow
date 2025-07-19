@@ -77,7 +77,7 @@ def to_mol(smi):
     if smi:
         return rkc.MolFromSmiles(smi)
 
-# 将分子标准化的两种方式
+# Two ways to standardize molecules
 def to_smiles(mol, variant="canonical"):
     """
     Converts a Mol object into a canonical SMILES string.
@@ -91,7 +91,7 @@ def to_smiles(mol, variant="canonical"):
             random_mol = rkc.RenumberAtoms(mol, newOrder=new_atom_order)
             return rkc.MolToSmiles(random_mol, canonical=False, isomericSmiles=False)
         else:
-            # 这里通过isomericSmiles设置分子是否标准化为同分异构体，也就说是否保留手性
+            # Here isomericSmiles sets whether molecules are standardized to isomers, i.e., whether chirality is preserved
             return rkc.MolToSmiles(mol, isomericSmiles=True, canonical=True)
 
 
