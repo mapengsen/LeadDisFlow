@@ -1,5 +1,6 @@
 # LeadDisFlow PyTorch Implementation
 
+
 ---
 
 <a href="https://github.com/HongxinXiang/ImageMol/blob/master/LICENSE">
@@ -11,9 +12,11 @@
 **🚀 Paper link:** https://doi.org/10.1360/nso/20240015
 
 
-<div align="center">
-  <img src="imgs/main.png" width="600"/>
-</div>
+<span style="display:flex; align-items:center;">
+  <img src="imgs/main.png" width="500"/>
+  <img src="imgs/paper-NSO.png" height="370"/>
+</span>
+
 
 
 ## 🪄 Adapt to Your Own Task
