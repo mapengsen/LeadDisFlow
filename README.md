@@ -16,11 +16,6 @@
   <img src="imgs/main.png" width="600"/>
 </div>
 
-<div align="center">
-  <img src="imgs/paper.png" height="400"/>
-</div>
-
-
 
 
 
