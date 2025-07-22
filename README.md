@@ -12,10 +12,15 @@
 **🚀 Paper link:** https://doi.org/10.1360/nso/20240015
 
 
-<span style="display:flex; align-items:center;">
-  <img src="imgs/main.png" width="500"/>
-  <img src="imgs/paper-NSO.png" height="370"/>
-</span>
+<div align="center">
+  <img src="imgs/main.png" width="600"/>
+</div>
+
+<div align="center">
+  <img src="imgs/paper.png" height="400"/>
+</div>
+
+
 
 
 
